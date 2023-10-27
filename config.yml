@@ -11,10 +11,10 @@ taxonomies:
 
 menu:
     main:
-        - name: Papers
+        - name: Research
           url: /papers/
           weight: 1
-        - name: Courses
+        - name: Teaching
           url: /courses/
           weight: 2
 
@@ -50,9 +50,9 @@ params:
           imageHeight: 160
           imageTitle: Sayorn Chin
           buttons:
-            - name: Papers
+            - name: Research
               url: /papers/
-            - name: Courses
+            - name: Teaching
               url: /courses/
 
     socialIcons:
