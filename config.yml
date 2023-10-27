@@ -44,7 +44,7 @@ params:
     profileMode:
           enabled: true
           title: Sayorn Chin, Ph.D.
-          subtitle: "I am an applied microeconomist and an Assistant Professor of Economics at Lafayette College. My research addresses policy-related questions by employing a wide range of machine learning techniques and econometric methods. These methods encompass NLP, casual forest, dynamic panel data estimators, natural experiments, and microsimulations to examine the relationship between income distribution and its influence on health and well-being."
+          subtitle: "I am an applied microeconomist and an Assistant Professor of Economics at Lafayette College. I also hold the position of Data Science Fellow Affiliate at Mountain Data Group. My research addresses policy-related questions by employing a wide range of machine learning techniques and econometric methods. These methods encompass NLP, casual forest, dynamic panel data estimators, natural experiments, and microsimulations to examine the relationship between income distribution and its influence on health and well-being."
           imageUrl: "/picture.jpeg"
           imageWidth: 160
           imageHeight: 160
