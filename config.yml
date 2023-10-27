@@ -1,5 +1,5 @@
-baseURL: "https://pascalmichaillat.org/" 
-title: Pascal Michaillat
+baseURL: "https://schinlfc.github.io/" 
+title: Sayorn Chin, Ph.D.
 paginate: 20
 theme: PaperMod
 
@@ -25,8 +25,8 @@ menu:
           weight: 4
 
 params:
-    description: "I am an Associate Professor of Economics at UC Santa Cruz. My research covers unemployment, economic slack, business cycles, and macroeconomic policy."
-    author: Pascal Michaillat
+    description: "I am an Assistant Professor of Economics at Lafayette College. My primary research interests are in health and public economics with an emphasis in income distribution and its impact on health."
+    author: Sayorn Chin
     googleAnalyticsID: "G-97G4MZ4061"
     DateFormat: "January 2006"
     defaultTheme: light
@@ -49,8 +49,8 @@ params:
     math: true
     profileMode:
           enabled: true
-          title: Pascal Michaillat
-          subtitle: "I am an Associate Professor of Economics at the University of California, Santa Cruz. I try to understand why economic slack—especially unemployment—exists; why it fluctuates over the business cycle; and how macroeconomic policies should respond to such cyclical fluctuations."
+          title: Sayorn Chin, Ph.D.
+          subtitle: "I am an applied microeconomist and an assistant professor of economics at Lafayette College. My research addresses policy-related inquiries by employing a wide range of machine learning techniques and econometric methods. These methods encompass dynamic panel data estimators, natural experiments, and microsimulations to examine the relationship between income distribution and its influence on health and well-being."
           imageUrl: "/picture.jpeg"
           imageWidth: 160
           imageHeight: 160
