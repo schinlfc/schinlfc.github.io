@@ -17,12 +17,6 @@ menu:
         - name: Courses
           url: /courses/
           weight: 2
-        - name: Design
-          url: /design/
-          weight: 3
-        - name: Newsletter
-          url: https://pmichaillat.substack.com
-          weight: 4
 
 params:
     description: "I am an Assistant Professor of Economics at Lafayette College. My primary research interests are in health and public economics with an emphasis in income distribution and its impact on health."
@@ -54,36 +48,24 @@ params:
           imageUrl: "/picture.jpeg"
           imageWidth: 160
           imageHeight: 160
-          imageTitle: Pascal Michaillat
+          imageTitle: Sayorn Chin
           buttons:
             - name: Papers
               url: /papers/
             - name: Courses
               url: /courses/
-            - name: Design
-              url: /design/
-            - name: Newsletter
-              url: https://pmichaillat.substack.com
-            - name: Tags
-              url: /tags/
-            - name: Archive
-              url: /archive/
 
     socialIcons:
         - name: CV
           url: /cv.pdf
         - name: Email
-          url: mailto:pascal.michaillat@gmail.com
+          url: mailto:chins@lafayette.edu
         - name: Location
           url: /location/
-        - name: Office Hours
-          url: /officehours/
         - name: Google Scholar
-          url: https://scholar.google.com/citations?user=cL23w-4AAAAJ
-        - name: YouTube
-          url: https://www.youtube.com/@pmichaillat
+          url: https://scholar.google.com/citations?user=Yx02X_IAAAAJ&hl=en
         - name: GitHub
-          url: https://github.com/pmichaillat?tab=repositories
+          url: https://github.com/schinlfc
 
     assets:
         disableHLJS: true
@@ -92,7 +74,7 @@ params:
         hiddenInList: false
         hiddenInSingle: true
     label:
-      text: "Pascal Michaillat"
+      text: "Sayorn Chin"
       icon: /favicon.ico
       iconHeight: 18
 
