@@ -60,8 +60,6 @@ params:
           url: /cv.pdf
         - name: Email
           url: mailto:chins@lafayette.edu
-        - name: Location
-          url: /location/
         - name: Google Scholar
           url: https://scholar.google.com/citations?user=Yx02X_IAAAAJ&hl=en
         - name: GitHub
