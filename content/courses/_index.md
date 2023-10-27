@@ -1,4 +1,4 @@
 ---
-title: "Courses"
-description: "Courses on business cycles, economic slack, unemployment, macroeconomics, and mathematical methods. For undergraduate and graduate students."
+title: "Teaching"
+description: "I teach courses in principles and intermediate microeconomics, macroeconomics, as well as advanced courses in economic development, health economics, econometrics, and applied machine learning"
 ---
