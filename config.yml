@@ -21,7 +21,7 @@ menu:
 params:
     description: "I am an Assistant Professor of Economics at Lafayette College. My primary research interests are in health and public economics with an emphasis in income distribution and its impact on health."
     author: Sayorn Chin
-    googleAnalyticsID: "G-97G4MZ4061"
+    googleAnalyticsID: 
     DateFormat: "January 2006"
     defaultTheme: light
     hideFooter: true
