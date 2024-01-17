@@ -32,7 +32,7 @@ Additionally, working knowledge in either R or Python coding is required.
 
 ---
 
-### Recommendations
+#### Recommendations
 
 I typically write letters of recommendation for students in support of their application for internships, jobs, academic programs, and graduate school.  A letter will usually answer these 3 questions about the student:
 1. How well do I know the student? In what capacity?
