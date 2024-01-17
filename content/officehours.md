@@ -10,7 +10,7 @@ description: "Schedule and location for my office hours at the Lafayette College
 
 #### Schedule
 
-I hold office hours by appointment. If you are a student in my class and would like to review class materials, or if you are not in my class but are interested in discussing the possibility of becoming my research assistant or seeking advice about graduate schools, please [make an appointment](https://appt.link/meet-with-sayorn-chin). 
+I hold office hours by appointment. If you are a student in my class and would like to review class materials, or if you are not in my class but are interested in discussing the possibility of becoming my research assistant or seeking advice about graduate school, please [make an appointment](https://appt.link/meet-with-sayorn-chin). 
 
 ---
 
