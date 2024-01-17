@@ -27,6 +27,7 @@ I am more likely to hire you as a research assistant after you have taken the fo
 + ECON 251 - Intermediate Microeconomics
 + ECON 253 - Fundamentals of Econometrics
 + ECON 327 - Applied Microeconometrics
+
 Additionally, working knowledge in either R or Python coding is required.
 
 ---
