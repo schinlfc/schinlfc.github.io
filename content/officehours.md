@@ -16,7 +16,7 @@ I hold office hours by appointment. If you are a student in my class and would l
 
 #### Location
 
-By default office-hour meetings are in my office (Simon 202).
+By default office-hour meetings are in my office (305 Simon Center Economics and Business).
 
 ---
 
@@ -28,7 +28,7 @@ I am more likely to hire you as a research assistant after you have taken the fo
 + ECON 253 - Fundamentals of Econometrics
 + ECON 327 - Applied Microeconometrics
 
-Additionally, working knowledge in either R or Python coding is required.
+Additionally, working knowledge in either Stata, R or Python coding is required.
 
 ---
 
