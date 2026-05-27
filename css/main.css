@@ -245,7 +245,6 @@ h3:after {
   width: 100%;
   max-width: 260px;
   margin: 0 0 1.25rem;
-  aspect-ratio: 8.5 / 11;
   background: var(--maroon);
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(0, 0, 0, .12);
@@ -255,8 +254,7 @@ h3:after {
 .pub-thumb img {
   display: block;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
 }
 
 .pub-content {
@@ -324,53 +322,12 @@ h3:after {
   color: var(--trench-blue);
 }
 
-/* Short description + collapsible full abstract (Read more / Read less) */
 .pub-description {
   color: var(--graphite);
   font-size: .95rem;
   line-height: 1.55;
   margin: 0 0 .35rem;
   max-width: 56rem;
-}
-
-.pub-more {
-  margin: 0 0 .35rem;
-  max-width: 56rem;
-}
-
-.pub-more > summary {
-  cursor: pointer;
-  display: inline-block;
-  color: var(--maroon);
-  font-size: .9rem;
-  font-weight: 500;
-  list-style: none;
-  padding: 0;
-  border-bottom: 1px solid transparent;
-  transition: border-color .15s ease;
-}
-
-.pub-more > summary::-webkit-details-marker { display: none; }
-.pub-more > summary::marker { content: ""; }
-.pub-more > summary::after {
-  content: " Read more";
-  font-size: 0;
-}
-.pub-more > summary::before {
-  content: "Read more";
-}
-.pub-more[open] > summary::before {
-  content: "Read less";
-}
-.pub-more > summary:hover {
-  border-bottom-color: var(--maroon);
-}
-
-.pub-more > .pub-abstract {
-  color: var(--graphite);
-  font-size: .95rem;
-  line-height: 1.55;
-  margin: .65rem 0 0;
 }
 
 /* Working Papers / Selected Work in Progress — no bullets */
