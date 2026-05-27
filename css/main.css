@@ -624,6 +624,17 @@ cite {
   padding: .4rem .6rem;
 }
 
+/* Override Bootstrap blue for the More/Less badge */
+#badge-more.badge-primary {
+  background-color: var(--maroon);
+  color: var(--white);
+}
+
+#badge-more.badge-primary:hover {
+  background-color: var(--maroon);
+  opacity: .85;
+}
+
 .urls {
   overflow-wrap: break-word;
   word-wrap: break-word;
