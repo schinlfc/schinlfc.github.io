@@ -509,7 +509,8 @@ ul.journal-articles .pub-links {
 }
 
 #page-navbar nav {
-  padding: 1.5rem;
+  padding: 1rem 1.5rem;
+  min-height: 4.5rem;
 }
 
 #page-navbar img {
@@ -526,7 +527,14 @@ ul.journal-articles .pub-links {
 
 #page-footer {
   background: var(--maroon);
-  padding: 1.5rem 0;
+  padding: 1rem 0;
+  min-height: 4.5rem;
+  display: flex;
+  align-items: center;
+}
+
+#page-footer > footer {
+  width: 100%;
 }
 
 #acknowledge {
