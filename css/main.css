@@ -373,9 +373,9 @@ ul.journal-articles {
 }
 
 ul.journal-articles > li {
-  padding: 0 0 .4rem;
-  margin: 0 0 .4rem;
-  line-height: 1.55;
+  padding: 0 0 .2rem;
+  margin: 0 0 .2rem;
+  line-height: 1.5;
   color: var(--graphite);
   border-bottom: 1px solid var(--lightest-gray);
 }
