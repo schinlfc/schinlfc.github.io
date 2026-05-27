@@ -424,11 +424,6 @@ ul.journal-articles .pub-links {
   margin-bottom: 1rem;
 }
 
-/* Vitae ----------------------------------------------------------------------*/
-#vitae-iframe {
-  box-shadow: 1px 1px 6px 0px var(--silver);
-}
-
 /* Format the social-professional network icons ------------------------------ */
 .social-icons {
   list-style-type: none;
