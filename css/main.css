@@ -14,7 +14,7 @@
   --trench-blue: #406885;
   --light-blue: #d0e9fe;
   --chocolate: rgb(210, 105, 30);
-  --maroon: maroon;
+  --maroon: #660000;
   --lightest-gray: #e9ecef;
 }
 
@@ -497,7 +497,7 @@ ul.journal-articles .pub-links {
 /* Navbar -------------------------------------------- */
 .bg-navbar,
 .bg-footer {
-  background: var(--nd-blue);
+  background: var(--maroon);
 }
 
 #page-navbar nav {
@@ -517,7 +517,7 @@ ul.journal-articles .pub-links {
 }
 
 #page-footer {
-  background: var(--nd-blue);
+  background: var(--maroon);
   padding: 2rem 0 1.5rem;
 }
 
