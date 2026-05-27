@@ -1,0 +1,398 @@
+\documentclass[a4paper,11pt]{article}
+\RequirePackage[T1]{fontenc}
+
+\usepackage{times}
+\usepackage{calc}
+\usepackage[shortcuts]{extdash}
+
+\usepackage{graphicx}
+
+\reversemarginpar
+
+\usepackage[paper=letterpaper,
+            marginparwidth=1.1in,     % Length of section titles
+            marginparsep=.075in,       % Space between titles and text
+            margin=0.5in,               % 1 inch margins
+            tmargin=0.65in,
+            bmargin=0.8in,
+            includemp]{geometry}
+
+\setlength{\parindent}{0in}
+
+\usepackage[shortlabels]{enumitem}
+
+\usepackage{xcolor}
+\definecolor{lafayette}{RGB}{102,0,0}
+
+\makeatletter
+\newlength{\bibhang}
+\setlength{\bibhang}{0em}
+\newlength{\bibsep}
+ {\@listi \global\bibsep\itemsep \global\advance\bibsep by\parsep}
+\newlist{bibsection}{itemize}{3}
+\setlist[bibsection]{label=,leftmargin=\bibhang,%
+        itemindent=-\bibhang,
+        itemsep=\bibsep,parsep=\z@,partopsep=0pt,
+        topsep=0pt}
+\newlist{bibenum}{enumerate}{3}
+\setlist[bibenum]{label=[\arabic*],resume,leftmargin={\bibhang+\widthof{[999]}},%
+        itemindent=-\bibhang,
+        itemsep=0.05in,parsep=\z@,partopsep=0pt,
+        topsep=0pt}
+\let\oldendbibenum\endbibenum
+\def\endbibenum{\oldendbibenum\vspace{-.6\baselineskip}}
+\let\oldendbibsection\endbibsection
+\def\endbibsection{\oldendbibsection\vspace{-.6\baselineskip}}
+\makeatother
+\usepackage[english]{babel}
+
+\usepackage{fancyhdr,lastpage}
+
+\pagestyle{fancy}
+\fancyhf{}                                    % clear all header/footer fields
+\fancyfoot[C]{Page \thepage\ of \pageref{LastPage}}
+\renewcommand{\headrulewidth}{0pt}            % no header rule
+\renewcommand{\footrulewidth}{0pt}            % no footer rule
+  % Uncomment this to get rid of page numbers
+\fancyhf{}\renewcommand{\headrulewidth}{0pt}
+\fancyfootoffset{\marginparsep+\marginparwidth}
+\newlength{\footpageshift}
+\setlength{\footpageshift}
+          {0.5\textwidth+0.5\marginparsep+0.5\marginparwidth-2in}
+\lfoot{\hspace{\footpageshift}%
+       \parbox{4in}{\, \hfill %
+                    \arabic{page} of \protect\pageref*{LastPage} % +LP
+%                    \arabic{page}                               % -LP
+                    \hfill \,}}
+
+\usepackage{color,hyperref}
+\definecolor{darkblue}{rgb}{0.0,0.0,0.3}
+\hypersetup{colorlinks,breaklinks,
+            linkcolor=darkblue,urlcolor=darkblue,
+            anchorcolor=darkblue,citecolor=darkblue}
+
+\renewcommand{\section}[1]{\pagebreak[3]%
+    \vspace{1.3\baselineskip}%
+    \phantomsection\addcontentsline{toc}{section}{#1}%
+    \noindent\llap{\scshape\smash{\parbox[t]{\marginparwidth}{\hyphenpenalty=10000\raggedright #1}}}%
+    \vspace{-\baselineskip}\par}
+
+\newcommand*\fixendlist[1]{%
+    \expandafter\let\csname preFixEndListend#1\expandafter\endcsname\csname end#1\endcsname
+    \expandafter\def\csname end#1\endcsname{\csname preFixEndListend#1\endcsname\vspace{-0.6\baselineskip}}}
+
+\let\originalItem\item
+\newcommand*\fixouterlist[1]{%
+    \expandafter\let\csname preFixOuterList#1\expandafter\endcsname\csname #1\endcsname
+    \expandafter\def\csname #1\endcsname{\let\oldItem\item\def\item{\pagebreak[2]\oldItem}\csname preFixOuterList#1\endcsname}
+    \expandafter\let\csname preFixOuterListend#1\expandafter\endcsname\csname end#1\endcsname
+    \expandafter\def\csname end#1\endcsname{\let\item\oldItem\csname preFixOuterListend#1\endcsname}}
+\newcommand*\fixinnerlist[1]{%
+    \expandafter\let\csname preFixInnerList#1\expandafter\endcsname\csname #1\endcsname
+    \expandafter\def\csname #1\endcsname{\let\oldItem\item\let\item\originalItem\csname preFixInnerList#1\endcsname}
+    \expandafter\let\csname preFixInnerListend#1\expandafter\endcsname\csname end#1\endcsname
+    \expandafter\def\csname end#1\endcsname{\csname preFixInnerListend#1\endcsname\let\item\oldItem}}
+
+\newlist{outerlist}{itemize}{3}
+    \setlist[outerlist]{label=\enskip\textbullet,leftmargin=*}
+    \fixendlist{outerlist}
+    \fixouterlist{outerlist}
+
+\newlist{lonelist}{itemize}{3}
+    \setlist[lonelist]{label=\enskip\textbullet,leftmargin=*,partopsep=0pt,topsep=0pt}
+    \fixendlist{lonelist}
+    \fixouterlist{lonelist}
+
+\newlist{innerlist}{itemize}{3}
+    \setlist[innerlist]{label=\enskip\textbullet,leftmargin=*,parsep=0pt,itemsep=0pt,topsep=0pt,partopsep=0pt}
+    \fixinnerlist{innerlist}
+
+\newlist{loneinnerlist}{itemize}{3}
+    \setlist[loneinnerlist]{label=\enskip\textbullet,leftmargin=*,parsep=0pt,itemsep=0pt,topsep=0pt,partopsep=0pt}
+    \fixendlist{loneinnerlist}
+    \fixinnerlist{loneinnerlist}
+
+\newcommand{\blankline}{\quad\pagebreak[3]}
+\newcommand{\halfblankline}{\quad\vspace{-0.5\baselineskip}\pagebreak[3]}
+
+\usepackage{doi}
+\usepackage{url}
+
+\usepackage[useregional]{datetime2}
+
+\urlstyle{same}
+\providecommand*\emaillink[1]{\nolinkurl{#1}}
+\providecommand*\email[1]{\href{mailto:#1}{\emaillink{#1}}}
+
+
+% Icons for contact info
+\usepackage{fontawesome5}    % email, github, link, etc.
+\usepackage{academicons}     % ORCID, Google Scholar, ResearchGate, etc.
+
+\begin{document}
+
+ {\hspace*{-\marginparsep minus \marginparwidth}%
+\begin{minipage}[t]{\textwidth+\marginparwidth+\marginparsep}%
+\centering
+{\LARGE \bfseries {Sayorn Chin}}\\
+\vspace{0.2cm}
+%Department of Economics, Lafayette College\\
+%305 Simon Center for Economics and Business\\
+\textcolor{lafayette}{\faIcon{envelope}~\href{mailto:chins@lafayette.edu}{chins@lafayette.edu}} |
+\textcolor{lafayette}{\faLink~\href{https://schinlfc.github.io}{schinlfc.github.io}} |
+\textcolor{lafayette}{\faGithub~\href{https://github.com/schinlfc}{schinlfc}} |
+\textcolor{lafayette}{\faOrcid~\href{https://orcid.org/0000-0002-5745-8595}{0000-0002-5745-8595}} |
+\textcolor{lafayette}{\faGraduationCap~\href{https://scholar.google.com/citations?user=Yx02X_IAAAAJ&hl=en}{Google Scholar}} \\
+Department of Economics, Lafayette College\\
+Simon Center for Economics and Business\\
+730 High Street, Easton, PA 18042 USA
+
+\vspace{0.2cm}
+Last Update: \DTMdisplaydate{\year}{\month}{\day}{-1}
+\rule{\columnwidth}{1.2pt}
+\end{minipage}}
+
+ \vspace{0.2cm}
+
+
+\section{Visa Status}
+
+\textbf{Cambodia:} Citizenship, \textbf{United States:} Permanent Resident
+
+\section{Current Positions}
+
+\textbf{Assistant Professor},
+\href{https://economics.lafayette.edu/faculty-and-staff/}{Department of Economics, Lafayette College}
+\hfill {Jul. 2023 -- Present}
+
+\vspace{0.1cm}
+
+\textbf{Data Science Fellow Affiliate},
+\href{https://www.mountaindatagroup.com/}{Mountain Data Group}
+\hfill {Jun. 2023 -- Present}
+
+
+\section{Previous Positions}
+\textbf{Data Scientist},
+\href{https://www.mountaindatagroup.com/}{Mountain Data Group}
+\hfill {May 2021 -- May 2023}
+
+\vspace{0.1cm}
+
+\textbf{Graduate Teaching Instructor},
+\href{https://economics.colostate.edu/}{Colorado State University}
+\hfill {Jul. 2020 -- May 2023}
+
+\vspace{0.1cm}
+
+\textbf{Graduate Teaching Assistant},
+\href{https://economics.colostate.edu/}{Colorado State University}
+\hfill {Aug. 2017 -- May 2020}
+
+\vspace{0.1cm}
+
+\textbf{Finance Assistant},
+\href{https://www.coloradocollege.edu/offices/finance/}{Colorado College}
+\hfill {Feb. 2016 -- Jan. 2017}
+
+\vspace{0.1cm}
+
+\textbf{Data Research Analyst},
+\href{https://www.coloradocollege.edu/offices/qrc/}{Colorado College}
+\hfill {Jan. 2016 -- May 2016}
+
+
+\section{Education}
+
+\textbf{Ph.D., Economics},
+\href{https://economics.colostate.edu/}{Department of Economics, Colorado State University}
+\hfill {2023}
+
+\vspace{0.1cm}
+
+\textbf{M.A., Economics},
+\href{https://economics.colostate.edu/}{Department of Economics, Colorado State University}
+\hfill {2019}
+
+\vspace{0.1cm}
+
+\textbf{B.A., Mathematical Economics},
+\href{https://www.coloradocollege.edu/academics/dept/economics/}{Department of Economics \& Business, Colorado College}
+\hfill {2017}
+
+\section{Research Output}
+
+\textbf{Peer-Reviewed Publications: Economics}
+\begin{enumerate}[leftmargin=*, label={[\arabic*]}]
+\item Beyond Income: Health, Wealth, and Racial Welfare Gaps Among Older Americans, with Ray Miller. \textit{\href{https://doi.org/10.1215/00703370-12460649}{Demography}}, 63, no. 1 (2026): 187–211.
+\begin{itemize}[leftmargin=*, label=\textbullet]
+    \item \textit{Demography} is the flagship journal of the Population Association of America.
+\end{itemize}
+\item Growing Old in Rural America: Measuring Late-life Health and Economic Well-being, with Yuulin An and Ray Miller. \textit{\href{https://doi.org/10.1016/j.jeoa.2025.100565}{The Journal of the Economics of Ageing}}, 31 (2025): 100565.
+\item The Welfare Cost of Late-life Depression, with Ray Miller and Ashish Kumar Sedai. \href{https://doi.org/10.1016/j.jebo.2022.10.001}{\emph{Journal of Economic Behavior \& Organization}}, 204 (2022): 15–36.
+\end{enumerate}
+
+\textbf{Peer-Reviewed Publications: Public Health}
+\begin{enumerate}[leftmargin=*, label={[\arabic*]}]
+\item The Unregulated Rise of Kratom Drinks: Emerging Challenges and Policy Recommendations, with Teresa Perry. \textit{\href{https://doi.org/10.1177/00333549251403378}{Public Health Reports}}, (2026): 1–6.
+\begin{itemize}[leftmargin=*, label=\textbullet]
+    \item \textit{Public Health Reports} is the flagship journal of the Office of the U.S. Surgeon General and the U.S. Public Health Service.
+\end{itemize}
+\item Kratom Drinks and Consumption Trends: Insights from Reddit, with Teresa Perry.
+\href{https://doi.org/10.1080/14659891.2025.2481069}{\textit{Journal of Substance Use}}, 31, no. 1 (2026): 124–132.
+\begin{itemize}[leftmargin=*, label=\textbullet]
+    \item \href{https://kratomsobriety.podbean.com/e/e46-teresa-perry-phd-academic-paper-on-rise-of-kratom-tonic-products/}{Listen to the recent discussion about this paper on Kratom Sobriety Podcast.}
+\end{itemize}
+\item Kratom Beverages Online: Marketing Narratives,
+Content, Dosing and Potential Risks, with Teresa Perry. \textit{\href{https://doi.org/10.1080/10826084.2025.2592879}{Substance Use \& Misuse}}, (2025): 1--4.
+\end{enumerate}
+
+\textbf{Peer-Reviewed Publications: Economics Pedagogy}
+\begin{enumerate}[leftmargin=*, label={[\arabic*]}]
+    \item From Cheating to Learning: AI Integration in Introductory Economics, with Kenese Io, Fatih K\i r\c{s}anli and Teresa Perry. \textit{Journal of Economics Teaching}, (2026).
+\end{enumerate}
+
+\textbf{Working Papers}
+\begin{enumerate}[leftmargin=*, label={[\arabic*]}]
+\item Loss or Gain from Separation? Wealth and Child Mental Health in Divorce Dynamics, with Solano Caffarena, Swarup Joshi, and Ashish Sedai. \textit{Under Review}.
+\item The Compensation of Conscience, with Sammy Zahran and Anders Fremstad. \textit{Under Review}.
+\item The Longer Reach of Lead: Early Childhood Lead Exposure and Cognitive Ability Later-in-Life, with Christopher Keyes, Sammy Zahran, and David Mushinski. \textit{Under Review}.
+\item Further Evidence of the Effects of Air Pollution on Crime, with Salvador Lurbé and Prasiddha Shakya.
+\item The Effect of Leaded Gasoline on Infant Health: Evidence from NASCAR Fuel Transition, with Yuulin An and Sammy Zahran.
+\item Maternal Lead Exposure and Birth Outcomes: Evidence from Natural Experiments in the Phase-out of Leaded Gasoline, with Sammy Zahran, Christopher Keyes, and Yuulin An.
+\end{enumerate}
+
+\textbf{Work in Progress}
+\begin{enumerate}[leftmargin=*, label={[\arabic*]}]
+    \item Lead Exposure and Heart-Disease Mortality in the United
+States, with Christopher Keyes, Bruce Lanphear, and Sammy Zahran.
+    \item Tip Credit Effects on Employment, Earnings, and Establishments, with Vinicius Curti Cícero.
+    \item The Morning Advantage: Differential Returns to Sunlight Exposure on Well-being, with Sammy Zahran and Ray Miller.
+    \item Excess Emissions and Infant Health: Evidence from Texas, with Susan Averett.
+    \item Urban Heat Island and Birth Complications, with Yuulin An and Tim Komarek.
+    \item Bringing Introductory Economics to Life: A Scaffolded
+Research Paper as Authentic Assessment in
+Introductory Economics, with Teresa Perry, Fatih K\i r\c{s}anl\i, and Kenese Io.
+\end{enumerate}
+
+\section{Teaching Experience}
+
+\textbf{Lafayette College}\\
+ECON 215: Health Economics \hfill{FA 2025}\\
+ECON 346: Economic Development \hfill{FA 2024, SP 2025, FA 2025, SP 2026}\\
+ECON 251: Intermediate Microeconomics \hfill{FA 2023, SP 2024, FA 2024, SP 2025, SP 2026}
+
+\textbf{Colorado State University}\\
+ECON 202: Principles of Microeconomics \hfill{FA 2017, FA 2019, SM 2020, FA 2021}\\
+\strut\hfill\hfill{SP 2022, FA 2022, SP 2023}\\
+ECON 204: Principles of Macroeconomics \hfill{SP 2018, FA 2018, SP 2019}\\
+\strut\hfill\hfill{SP 2020, FA 2020}\\
+ECON 306: Intermediate Microeconomics \hfill{FA 2021, SP 2022}\\
+ECON 304: Intermediate Macroeconomics \hfill{SP 2021}\\
+ECON 335: Introduction to Econometrics \hfill{SM 2019}\\
+ECON 460: Economic Development \hfill{FA 2021}
+
+\section{Research Advising}
+
+\textbf{Honors Thesis Advising}\\
+Daniel Colden ('26) - Economics and History (Primary Advisor)\\
+Benjamin Risley ('26) - Government and Law, Economics (Second Reader)
+
+\textbf{Independent Study}\\
+Isabel Berkeley ('25) \hfill{Spring 2025}\\
+Xinyuan Liang ('27) \hfill{Spring 2025}\\
+Yi Luo ('26) \hfill{Spring 2025}\\
+Justin Fretz ('25) \hfill{Spring 2025}
+
+\textbf{EXCEL Scholars/Bergh Fellows/Research Assistants}\\
+Yi Luo ('26) \hfill{Fall 2025}\\
+Ava Sydell ('27) \hfill{Summer 2025}\\
+Daniel Colden ('26) \hfill{Winter 2025}\\
+Naya Kurdy ('25) \hfill{Fall 2024, Spring 2025} \\
+Vanika Sok ('26) \hfill{Summer 2024, Fall 2024}
+
+
+\section{College Service}
+Artificial Intelligence Club Advisor \hfill{Summer 2025 -- Present}\\
+International Faculty \& Staff Community of Practice Board Member
+\hfill{Spring 2025 -- Present}
+
+\section{Department Service}
+Scholarship Revision Working Group \hfill{Fall 2025 -- Present}\\
+Co-organizer Department Honors Program \hfill{Fall 2024 -- Present}
+
+\section{Honors and Awards}
+
+Student Government Superior Teaching Awards Nominee, Lafayette College \hfill{2024}\\
+Graduate Research Assistantship, Department of Economics, Colorado State University \hfill{2022}\\
+Competition Committee Member, AFIT-AFEE 16th Annual Student Scholars Award \hfill{2022}\\
+Best Paper Award, AFIT-AFEE 16th Annual Student Scholars Award \hfill{2021}\\
+Graduate Teaching Assistantship, Department of Economics, Colorado State University \hfill{2017 -- 2023}\\
+Colorado College Financial Aid Award \hfill{2013 -- 2017}\\
+Davis United World College Scholars Scholarship Award \hfill{2013 -- 2017}\\
+United World College of Southeast Asia Scholarship Award \hfill{2008 -- 2013}
+
+\section{Conferences}
+Eastern Economic Association, La Romana, Dominican Republic \hfill{2026}\\
+Association for Public Policy Analysis and Management, Seattle, WA \hfill{2025}\\
+Southern Economic Association 95th Annual Meeting, Tampa, FL \hfill{2025}\\
+The 14th Annual Conference on Teaching  and Research in Economic Education, Denver, CO \hfill{2025}\\
+Southern Economic Association 94th Annual Meeting, Washington, D.C. \hfill{2024}\\
+The 70th Meetings of the North American Regional Science Council, San Diego, CA \hfill{2023}\\
+The 3rd Annual Conference of the Western Social Science Association 2021 (virtual) \hfill{2021}
+
+\section{Other Conference Activities}
+Eastern Economic Association 52nd Annual Meeting, La Romana, Dominican Republic. \hfill{2026}\\
+\textit{Discussant (one paper)}\\
+ASSA Annual Meeting, Philadelphia, Pennsylvania. \hfill{2026}\\
+\textit{Session Chair: ``Artificial Intelligence''}\\
+Southern Economic Association 94th Annual Meeting, Washington, D.C. \hfill{2024}\\
+\textit{Discussant (one paper)}\\
+The 70th Meetings of the North American Regional Science Council, San Diego, CA \hfill{2023}\\
+\textit{Discussant (one paper)}
+
+\section{Workshops}
+7th Annual Southeastern Micro Labor Workshop, Federal Reserve Bank of Atlanta, Orlando, FL. \hfill{2025}\\
+6th Annual Southeastern Micro Labor Workshop, Federal Reserve Bank of Atlanta, Clemson, SC. \hfill{2024}
+
+\section{Media Mentions}
+Huss, Phoebe. \href{https://calmatters.org/education/2026/03/feel-free-kratom-california-university-public-health-ban/}{``Once given out at USC, this banned, opioid-like product is still cropping up in California.''} \textit{CalMatters}, March 17, 2026.\\
+Reddy, Sumathi. \href{https://www.wsj.com/health/wellness/kratom-supplement-safety-b63d0573?gaa_at=eafs&gaa_n=ASWzDAhrqqlrzhaJxFkqqPddp5QD6nUXkxFc3JjdBDQpvomtV5qNlhN3v1kV0kvbJP8%3D&gaa_ts=68a0f048&gaa_sig=_AhqwvecENFGUuDLMS-1FNxAXY9ZoNKEGgc5P7qmZeDH4grCczT-wpgmwMGEAzP40eQJJf22qVj-6zBg08jp7g%3D%3D}{``What You Need to Know About Kratom.''} \textit{Wall Street Journal}, August 16, 2025.
+
+\section{Invited Talks}
+Colorado College Economic Department Seminar Series \hfill{2026}\\
+Dickinson College Economic Department Seminar Series \hfill{2025}\\
+AI in Economics Seminar Series at Royal Holloway, University of London (virtual) \hfill{2025}\\
+Keynote Speaker, APIME Graduation Celebration at Lafayette College \hfill{2025}\\
+Faculty Features: A Roundtable Celebrating Lafayette Faculty Scholarship and
+Creativity \hfill{2025}\\
+Asian Cultural Association at Lafayette College \hfill{2024, 2025}\\
+The Hanson Center for Inclusive STEM Education at Lafayette College \hfill{2024}\\
+University of Wyoming, Knox College, University of New Hampshire \hfill{2023}
+
+\section{Skills and Credentials}
+\textbf{Programming/Software}\\
+Proficient in: Python, R, Stata, MySQL, Git/GitHub
+
+\textbf{Certifications}\\
+Good Clinical Practice Training for Social and Behavioral Research, Tools for Data Science, Python for Data Science, Python for Data Science \& AI,
+Data Science Methodology, Database \& SQL for Data Science, Data Analysis with
+Python, Machine Learning with Python, Data Visualization with Python, Python
+Project for Data Science
+
+\section{Professional Affiliations}
+
+American Economic Association, American Society of Health Economists
+
+\section{Professional Service}
+%Co-facilitator in the teaching workshop about AI at the ASSA  \hfill{Jan. 3-5, 2026}\\
+Referee for:\emph{
+International Journal of Mental Health and Addiction (x2), Regulation \& Governance (x2), Eastern Economic Journal, Journal of Family and Economic Issues, Economics and Human Biology (x3), Energy Economics (x4), World Development}
+
+External reviewer: Ph.D. Dissertation at Indian Institute of Technology (IIT) Kanpur
+
+%\section{References}
+
+%Available upon request
+
+\end{document}
