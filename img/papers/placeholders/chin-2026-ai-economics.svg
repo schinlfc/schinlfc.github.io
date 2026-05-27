@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 440" width="340" height="440" role="img" aria-label="From Cheating to Learning: AI Integration in Introductory Economics — Journal of Economics Teaching, 2026">
+  <rect width="340" height="440" fill="#660000"/>
+  <rect x="14" y="14" width="312" height="412" fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="1"/>
+  <g font-family="Georgia, 'Times New Roman', serif" fill="#ffffff">
+    <text x="30" y="80" font-size="24" font-weight="700">
+      <tspan x="30" dy="0">From Cheating</tspan>
+      <tspan x="30" dy="30">to Learning</tspan>
+    </text>
+    <text x="30" y="190" font-size="14" font-style="italic" fill="rgba(255,255,255,0.85)">
+      <tspan x="30" dy="0">AI Integration in Introductory</tspan>
+      <tspan x="30" dy="20">Economics</tspan>
+    </text>
+    <text x="30" y="270" font-size="13" font-family="'Roboto', Arial, sans-serif" fill="rgba(255,255,255,0.75)">
+      <tspan x="30" dy="0">with Kenese Io, Fatih Kırşanlı,</tspan>
+      <tspan x="30" dy="18">Teresa Perry</tspan>
+    </text>
+  </g>
+  <rect x="0" y="370" width="340" height="70" fill="rgba(0,0,0,0.28)"/>
+  <g font-family="Georgia, 'Times New Roman', serif" fill="#ffffff">
+    <text x="30" y="398" font-size="14" font-style="italic">J. Economics Teaching</text>
+    <text x="30" y="420" font-size="13" fill="rgba(255,255,255,0.7)">2026</text>
+  </g>
+</svg>
