@@ -579,7 +579,12 @@ cite {
 
 #wrapper a {
   font-size: inherit;
-  color: var(--bright-blue);
+  color: var(--maroon);
+}
+
+#wrapper a:hover {
+  color: var(--maroon);
+  text-decoration: underline;
 }
 
 /* Search-box */
