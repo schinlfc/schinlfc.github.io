@@ -435,14 +435,22 @@ ul.journal-articles .pub-links {
 }
 
 .social-icons li {
-  padding: 0 .75rem;
+  padding: 0 .55rem;
   display: inline-block;
   text-align: center;
   cursor: pointer;
 }
 
+.social-icons li:last-child {
+  padding-right: 0;
+}
+
 .social-icons li a {
-  color: #1585cf;
+  color: var(--white);
+}
+
+.social-icons li a:hover {
+  color: var(--lightest-gray);
 }
 
 /* Color --------------------------------------------- */
@@ -518,7 +526,7 @@ ul.journal-articles .pub-links {
 
 #page-footer {
   background: var(--maroon);
-  padding: 2rem 0 1.5rem;
+  padding: 1.5rem 0;
 }
 
 #acknowledge {
