@@ -509,7 +509,8 @@ ul.journal-articles .pub-links {
 }
 
 #page-navbar nav {
-  padding: 1rem 1.5rem;
+  padding: 0 1.5rem;
+  height: 4.5rem;
   min-height: 4.5rem;
 }
 
@@ -527,14 +528,21 @@ ul.journal-articles .pub-links {
 
 #page-footer {
   background: var(--maroon);
-  padding: 1rem 0;
+  width: 100%;
+  height: 4.5rem;
   min-height: 4.5rem;
   display: flex;
   align-items: center;
 }
 
 #page-footer > footer {
+  flex: 1 1 auto;
   width: 100%;
+  padding: 0 1.5rem;
+}
+
+#page-footer > footer > .container-fluid {
+  padding: 0;
 }
 
 #acknowledge {
@@ -632,18 +640,21 @@ cite {
   padding: .4rem .6rem;
 }
 
-/* Override Bootstrap blue for the More/Less badge */
-#badge-more,
-#badge-more.badge-primary,
-span#badge-more.badge.badge-primary {
-  background-color: var(--maroon) !important;
-  color: var(--white) !important;
+/* Override Bootstrap blue for the More/Less badge. */
+html body span#badge-more,
+html body span#badge-more.badge,
+html body span#badge-more.badge-primary,
+html body span#badge-more.badge.badge-primary {
+  background-color: #660000 !important;
+  background: #660000 !important;
+  color: #ffffff !important;
 }
 
-#badge-more:hover,
-#badge-more.badge-primary:hover {
-  background-color: var(--maroon) !important;
-  color: var(--white) !important;
+html body span#badge-more:hover,
+html body span#badge-more.badge.badge-primary:hover {
+  background-color: #660000 !important;
+  background: #660000 !important;
+  color: #ffffff !important;
   opacity: .85;
 }
 
