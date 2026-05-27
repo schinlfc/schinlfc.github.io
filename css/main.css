@@ -373,11 +373,15 @@ ul.journal-articles {
 }
 
 ul.journal-articles > li {
-  padding: 0 0 1.5rem;
-  margin: 0 0 1.5rem;
+  padding: 0 0 .75rem;
+  margin: 0 0 .75rem;
   line-height: 1.55;
   color: var(--graphite);
   border-bottom: 1px solid var(--lightest-gray);
+}
+
+ul.journal-articles > li > .pub-citation {
+  margin-bottom: 0;
 }
 
 ul.journal-articles > li:last-child {
