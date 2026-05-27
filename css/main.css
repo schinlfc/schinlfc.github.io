@@ -633,13 +633,17 @@ cite {
 }
 
 /* Override Bootstrap blue for the More/Less badge */
-#badge-more.badge-primary {
-  background-color: var(--maroon);
-  color: var(--white);
+#badge-more,
+#badge-more.badge-primary,
+span#badge-more.badge.badge-primary {
+  background-color: var(--maroon) !important;
+  color: var(--white) !important;
 }
 
+#badge-more:hover,
 #badge-more.badge-primary:hover {
-  background-color: var(--maroon);
+  background-color: var(--maroon) !important;
+  color: var(--white) !important;
   opacity: .85;
 }
 
