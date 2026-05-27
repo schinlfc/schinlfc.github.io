@@ -70,6 +70,11 @@
           <table class="table mt-4" id="contact-table">
             <tbody>
               <tr class="d-flex">
+                <td class="col-2"><i class="fa fa-fw fa-lg fa-file-pdf"></i></td>
+                <td class="col-10"><a href="/cv/cv.pdf" target="_blank">Curriculum Vitae</a><br><small
+                    class="text-muted">Last update: <span id="cv-updated">May 27, 2026</span></small></td>
+              </tr>
+              <tr class="d-flex">
                 <td class="col-2"><i class="fa fa-fw fa-lg fa-home"></i></td>
                 <td class="col-10">305 Simon Center<br>
                   Department of Economics<br>
@@ -91,11 +96,6 @@
                 <td class="col-2"><i class="fa fa-lg fa-calendar-plus"></i></td>
                 <td class="col-10"><a href="https://appt.link/meet-with-sayorn-chin" target="_blank">Appointment</a><br><small
                     class="text-muted">15 min each</small></td>
-              </tr>
-              <tr class="d-flex">
-                <td class="col-2"><i class="fa fa-fw fa-lg fa-file-pdf"></i></td>
-                <td class="col-10"><a href="/cv/cv.pdf" target="_blank">Curriculum Vitae</a><br><small
-                    class="text-muted">PDF, updated regularly</small></td>
               </tr>
             </tbody>
           </table>
@@ -234,6 +234,24 @@
         // Load the top page navbar
         $("#page-navbar").load("page-navbar.html", function () {
           console.log("navbar loaded");
+        });
+
+        // Replace the CV "Last update" date with the actual Last-Modified
+        // header of cv.pdf so the sidebar date stays in sync with the file.
+        $.ajax({
+          type: 'HEAD',
+          url: '/cv/cv.pdf',
+          complete: function (xhr) {
+            var lastMod = xhr.getResponseHeader('Last-Modified');
+            if (lastMod) {
+              var d = new Date(lastMod);
+              if (!isNaN(d.getTime())) {
+                $('#cv-updated').text(d.toLocaleDateString('en-US', {
+                  year: 'numeric', month: 'long', day: 'numeric'
+                }));
+              }
+            }
+          }
         });
 
       });
