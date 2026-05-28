@@ -467,10 +467,11 @@ ul.journal-articles .pub-links {
   font-size: .9rem;
   line-height: 1.45;
   margin: 0 0 .35rem;
+  text-align: left;
 }
 
 .advisee-label {
-  font-weight: 600;
+  font-weight: 400;
   color: var(--trench-blue);
 }
 
