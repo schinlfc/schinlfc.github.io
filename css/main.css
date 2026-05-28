@@ -711,6 +711,16 @@ input::placeholder {
 /* Collapsed-navbar item styling — matches the navbar-expand-md breakpoint
    (was 560px, so 561–767px showed the hamburger menu with unstyled items). */
 @media screen and (max-width: 767.98px) {
+  /* The desktop rule pins the bar to height: 4.5rem so it matches the footer.
+     On mobile that fixed height stops the maroon bar from growing when the
+     hamburger menu opens, so the expanded items (white text) spill onto the
+     light page below and vanish — only "About Me" stayed readable. Let the
+     bar grow to fit the open menu; min-height keeps the collapsed bar at
+     4.5rem. */
+  #page-navbar nav {
+    height: auto;
+  }
+
   #page-navbar .nav-item {
     padding: .1rem 2rem .1rem 1.5rem;
     margin-top: .35rem;
