@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240" role="img" aria-label="Student photo placeholder">
+  <rect width="240" height="240" fill="#660000"/>
+  <circle cx="120" cy="92" r="44" fill="#ffffff" fill-opacity="0.9"/>
+  <ellipse cx="120" cy="222" rx="84" ry="68" fill="#ffffff" fill-opacity="0.9"/>
+</svg>

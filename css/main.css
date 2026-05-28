@@ -412,6 +412,90 @@ ul.journal-articles .pub-links {
   margin-bottom: 1rem;
 }
 
+/* Research Advising — portrait cards in a grid ------------------------------ */
+.advisee-col {
+  margin-bottom: 1.75rem;
+}
+
+.advisee-card {
+  height: 100%;
+  text-align: center;
+  padding: 1.5rem 1.1rem 1.25rem;
+  background: var(--white);
+  border: 1px solid var(--lightest-gray);
+  border-radius: 6px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .05);
+}
+
+.advisee-photo {
+  display: block;
+  width: 132px;
+  height: 132px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto .9rem;
+  border: 3px solid var(--maroon);
+  background: var(--lightest-gray);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .12);
+}
+
+.advisee-name {
+  color: var(--maroon) !important;
+  font-weight: 700;
+  font-size: 1.15rem;
+  margin: 0 0 .15rem;
+}
+
+.advisee-meta {
+  color: var(--graphite);
+  font-size: .9rem;
+  margin: 0 0 .4rem;
+}
+
+.advisee-role {
+  color: var(--trench-blue);
+  font-size: .72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  margin: 0 0 .6rem;
+}
+
+.advisee-topic,
+.advisee-now {
+  color: var(--graphite);
+  font-size: .9rem;
+  line-height: 1.45;
+  margin: 0 0 .35rem;
+}
+
+.advisee-label {
+  font-weight: 600;
+  color: var(--trench-blue);
+}
+
+/* "Current student" pill */
+.advisee-now--current {
+  display: inline-block;
+  background: rgba(102, 0, 0, .06);
+  color: var(--maroon);
+  font-size: .8rem;
+  font-weight: 600;
+  padding: .2rem .6rem;
+  border: 1px solid rgba(102, 0, 0, .2);
+  border-radius: 999px;
+  margin-top: .15rem;
+}
+
+/* Personal-site / LinkedIn row — reuses .pub-links visuals, centered */
+.advisee-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: .4rem .9rem;
+  margin: .7rem 0 0;
+}
+
 /* Format the social-professional network icons ------------------------------ */
 .social-icons {
   list-style-type: none;

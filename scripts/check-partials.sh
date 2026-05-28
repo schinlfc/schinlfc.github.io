@@ -17,7 +17,7 @@ set -uo pipefail
 cd "$(dirname "$0")/.."
 
 # Full content pages (must include navbar + footer; acknowledge is opt-in)
-PAGES=(index.html research.html teaching.html projects.html)
+PAGES=(index.html research.html research-advising.html teaching.html projects.html)
 
 # Special pages: reported but not required to comply with the full-page rule.
 # - acknowledge.html: HTML fragment used as a partial itself
