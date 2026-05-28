@@ -249,51 +249,26 @@ h3:after {
   display: table-cell;
   vertical-align: top;
   width: 170px;
-  background: var(--maroon);
-  overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, .12);
-  border-radius: 2px;
+  overflow: visible;
   position: relative;
 }
 
+/* Shadow + rounding live on the image, not the cell. The cell is a table-cell
+   so it stretches to the (often taller) text column; when it did, its maroon
+   background showed as a big block below the cover. Keeping the treatment on
+   the image means any extra cell height below the cover is just transparent. */
 .pub-thumb img {
   display: block;
   width: 100%;
   height: auto;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .12);
+  border-radius: 2px;
 }
 
 .pub-content {
   display: table-cell;
   vertical-align: top;
   padding-left: 1.5rem;
-}
-
-/* Journal badge overlaid on top-left of every thumbnail */
-.pub-journal-badge {
-  position: absolute;
-  top: 0;
-  left: 0;
-  background: var(--maroon);
-  color: var(--white);
-  font-size: .65rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: .04em;
-  padding: .22rem .55rem;
-  border-bottom-right-radius: 3px;
-  white-space: nowrap;
-  z-index: 2;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, .2);
-  font-family: 'Roboto', Arial, sans-serif;
-}
-
-@media (max-width: 640px) {
-  .pub-thumb {
-    width: 130px;
-  }
-  .pub-content {
-    padding-left: 1rem;
-  }
 }
 
 /* AEA-style citation block */
@@ -730,6 +705,31 @@ input::placeholder {
   #page-navbar #projects {
     border: none !important;
   }
+
+  /* Publication cards: stop forcing thumbnail + text side-by-side. Below the
+     desktop breakpoint the table layout crammed the citation into a narrow
+     column AND, because the cell stretches to the (taller) text, left a big
+     empty block below the cover. Stack the cover on top, text full-width.
+     Applied across the whole collapsed-navbar range (incl. landscape phones,
+     601–767px) so the side-by-side gap never shows on small screens. */
+  .pub-card {
+    display: block;
+  }
+
+  .pub-thumb {
+    display: block;
+    width: 120px;
+    margin-bottom: 1rem;
+  }
+
+  .pub-content {
+    display: block;
+    padding-left: 0;
+  }
+
+  .pub-citation {
+    font-size: 1rem;
+  }
 }
 
 /* Phone layout (≤600px) ----------------------------------------------------- */
@@ -750,27 +750,5 @@ input::placeholder {
   #wrapper .row.mx-3 {
     margin-left: 0 !important;
     margin-right: 0 !important;
-  }
-
-  /* Publication cards: stop forcing thumbnail + text side-by-side. The fixed
-     130px cover left the citation text in a ~150px column (many broken lines).
-     Stack the cover on top and give the text the full width. */
-  .pub-card {
-    display: block;
-  }
-
-  .pub-thumb {
-    display: block;
-    width: 120px;
-    margin-bottom: 1rem;
-  }
-
-  .pub-content {
-    display: block;
-    padding-left: 0;
-  }
-
-  .pub-citation {
-    font-size: 1rem;
   }
 }
