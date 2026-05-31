@@ -397,7 +397,7 @@ ul.journal-articles > li:last-child {
   padding-bottom: 0;
 }
 
-/* "Status: <em>Under Review</em>" — same color/size as the Working Paper link */
+/* Status icon (hourglass) + "<em>Under Review</em>" — same color/size as the Working Paper link */
 .pub-status {
   display: inline-flex;
   align-items: center;
