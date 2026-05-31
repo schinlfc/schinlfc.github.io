@@ -460,6 +460,27 @@ ul.journal-articles .pub-links {
   border: 3px solid var(--maroon);
   background: var(--lightest-gray);
   box-shadow: 0 2px 8px rgba(0, 0, 0, .12);
+  transform-origin: center;
+  transition: transform .25s ease, box-shadow .25s ease;
+  will-change: transform;
+}
+
+/* Hover zoom: enlarge the circular headshot in place (center-anchored, so the
+   layout never shifts) and lift it above neighboring cards with a deeper
+   shadow. GPU-cheap via transform-origin + will-change. */
+.advisee-card:hover .advisee-photo,
+.advisee-photo:hover {
+  transform: scale(1.18);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, .25);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .advisee-photo,
+  .advisee-card:hover .advisee-photo,
+  .advisee-photo:hover {
+    transition: none;
+    transform: none;
+  }
 }
 
 .advisee-name {
