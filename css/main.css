@@ -263,6 +263,29 @@ h3:after {
   height: auto;
   box-shadow: 0 2px 8px rgba(0, 0, 0, .12);
   border-radius: 2px;
+  transform-origin: left top;
+  transition: transform .25s ease, box-shadow .25s ease;
+  will-change: transform;
+}
+
+/* Hover zoom: scale the cover up over the citation column so readers can
+   inspect the first page without leaving the list. transform-origin keeps the
+   top-left anchored (no visible shift), and z-index lifts it over neighbors. */
+.pub-thumb:hover {
+  z-index: 5;
+}
+
+.pub-thumb:hover img {
+  transform: scale(2.4);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, .28);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pub-thumb img,
+  .pub-thumb:hover img {
+    transition: none;
+    transform: none;
+  }
 }
 
 .pub-content {
@@ -804,6 +827,14 @@ input::placeholder {
     display: block;
     width: 120px;
     margin-bottom: 1rem;
+  }
+
+  /* No hover zoom on touch / small-screen layouts: the stacked column has no
+     open space for the enlarged cover to occupy, and most small-screen users
+     are touch-only (so :hover is sticky / unreliable). */
+  .pub-thumb:hover img {
+    transform: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .12);
   }
 
   .pub-content {
