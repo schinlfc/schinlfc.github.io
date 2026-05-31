@@ -348,8 +348,12 @@ h3:after {
   text-decoration: none;
 }
 
+/* Icons take the secondary accent (trench blue) so they read distinctly from
+   the maroon link text beside them. A direct rule on the <i> overrides the
+   maroon color inherited from the parent <a>. */
 .pub-links a i {
   font-size: .8rem;
+  color: var(--trench-blue);
 }
 
 .pub-note {
@@ -413,6 +417,11 @@ ul.journal-articles > li:last-child {
   font-weight: 500;
 }
 
+/* Match the link icons: status icon in trench blue, the status text stays maroon. */
+.pub-status i {
+  color: var(--trench-blue);
+}
+
 /* WP-version link strip — matches .pub-links style from peer-reviewed cards */
 ul.journal-articles .pub-links {
   display: flex;
@@ -470,8 +479,8 @@ ul.journal-articles .pub-links {
    shadow. GPU-cheap via transform-origin + will-change. */
 .advisee-card:hover .advisee-photo,
 .advisee-photo:hover {
-  transform: scale(1.18);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, .25);
+  transform: scale(1.28);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, .26);
 }
 
 @media (prefers-reduced-motion: reduce) {
