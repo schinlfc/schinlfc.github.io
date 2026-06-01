@@ -897,3 +897,35 @@ input::placeholder {
     margin-right: 0 !important;
   }
 }
+
+/* Read-more disclosure -------------------------------------------------------
+   CSS-only collapsible (native <details>) used to hide longer asides behind a
+   "Read more" link that swaps to "Read less" when expanded. No JS required. */
+.read-more {
+  margin-bottom: 1rem;
+}
+
+.read-more-toggle {
+  display: inline-block;
+  cursor: pointer;
+  color: var(--trench-blue);
+  font-weight: 600;
+  list-style: none;          /* Firefox: remove default disclosure triangle */
+  outline-offset: 3px;
+}
+
+.read-more-toggle::-webkit-details-marker {
+  display: none;             /* WebKit/Blink: remove default triangle */
+}
+
+.read-more-toggle::after {
+  content: "Read more \25BC";  /* ▼ */
+}
+
+.read-more[open] > .read-more-toggle::after {
+  content: "Read less \25B2";  /* ▲ */
+}
+
+.read-more-toggle:hover {
+  text-decoration: underline;
+}
