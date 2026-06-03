@@ -263,20 +263,24 @@ h3:after {
   height: auto;
   box-shadow: 0 2px 8px rgba(0, 0, 0, .12);
   border-radius: 2px;
-  transform-origin: left top;
-  transition: transform .25s ease, box-shadow .25s ease;
-  will-change: transform;
+  transition: width .25s ease, box-shadow .25s ease;
 }
 
-/* Hover zoom: scale the cover up over the citation column so readers can
-   inspect the first page without leaving the list. transform-origin keeps the
-   top-left anchored (no visible shift), and z-index lifts it over neighbors. */
+/* Hover zoom: enlarge the cover over the citation column so readers can
+   inspect the first page without leaving the list. We grow the image's real
+   width (repainting from the high-res source) rather than transform: scale,
+   which would GPU-upscale the thumbnail-size texture and blur the text.
+   Absolute + top/left:0 anchors it to the resting position so it grows in
+   place; z-index lifts it over neighbors. */
 .pub-thumb:hover {
   z-index: 5;
 }
 
 .pub-thumb:hover img {
-  transform: scale(2.4);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 240%;
   box-shadow: 0 14px 36px rgba(0, 0, 0, .28);
 }
 
@@ -284,7 +288,6 @@ h3:after {
   .pub-thumb img,
   .pub-thumb:hover img {
     transition: none;
-    transform: none;
   }
 }
 
@@ -393,6 +396,14 @@ ul.journal-articles > li {
 
 ul.journal-articles > li > .pub-citation {
   margin-bottom: 0;
+}
+
+/* When a working paper has a description, match the published cards'
+   title-to-description gap (.pub-citation margin-bottom: .85rem there).
+   The citation stays flush for link-only entries, so add the gap above
+   the description instead. */
+ul.journal-articles > li > .pub-description {
+  margin-top: .85rem;
 }
 
 ul.journal-articles > li:last-child {
@@ -863,7 +874,8 @@ input::placeholder {
      open space for the enlarged cover to occupy, and most small-screen users
      are touch-only (so :hover is sticky / unreliable). */
   .pub-thumb:hover img {
-    transform: none;
+    position: static;
+    width: 100%;
     box-shadow: 0 2px 8px rgba(0, 0, 0, .12);
   }
 
