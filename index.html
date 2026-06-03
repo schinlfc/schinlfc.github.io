@@ -236,23 +236,12 @@
           console.log("navbar loaded");
         });
 
-        // Replace the CV "Last update" date with the actual Last-Modified
-        // header of cv.pdf so the sidebar date stays in sync with the file.
-        $.ajax({
-          type: 'HEAD',
-          url: '/cv/cv.pdf',
-          complete: function (xhr) {
-            var lastMod = xhr.getResponseHeader('Last-Modified');
-            if (lastMod) {
-              var d = new Date(lastMod);
-              if (!isNaN(d.getTime())) {
-                $('#cv-updated').text(d.toLocaleDateString('en-US', {
-                  year: 'numeric', month: 'long', day: 'numeric'
-                }));
-              }
-            }
-          }
-        });
+        // The CV "Last update" date is authored statically in the #cv-updated
+        // span above and should match the "Last Update" stamp inside cv/cv.pdf.
+        // Update both together whenever the CV is rebuilt (see /compile-cv).
+        // Note: we deliberately do NOT derive this from cv.pdf's Last-Modified
+        // header — on GitHub Pages that header is the last *deploy* time, so an
+        // unrelated deploy would silently bump the date out of sync with the PDF.
 
       });
       // document.ready
