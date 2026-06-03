@@ -394,6 +394,14 @@ ul.journal-articles > li {
   border-bottom: 1px solid var(--lightest-gray);
 }
 
+/* Working Papers only: .425rem above + below the divider = .85rem of
+   whitespace between cards, matching the title-to-description gap within an
+   entry (see below). Selected Work in Progress keeps the tighter default. */
+ul.journal-articles.working-papers > li {
+  padding-bottom: .425rem;
+  margin-bottom: .425rem;
+}
+
 ul.journal-articles > li > .pub-citation {
   margin-bottom: 0;
 }
