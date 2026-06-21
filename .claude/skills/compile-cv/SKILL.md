@@ -58,7 +58,40 @@ Build the LaTeX CV in `cv/src/` and copy the resulting PDF to `cv/cv.pdf` (which
      - Any `\overfull`/`\underfull` hbox warnings from the log (counts, not full list)
    - Suggest running `/check-links` if external links were added/changed.
 
-7. **Cleanup:** leave `cv/src/build/` in place (it's gitignored). Faster subsequent compiles.
+7. **Sync the home-page "Last update" date — but only when the CV actually
+   changed.** The CV stamps its own compile date (`Last Update: <Month DD,
+   YYYY>` via `\DTMdisplaydate`), and `index.html` mirrors it in a static
+   `<span id="cv-updated">` next to the CV download link. Because the stamp
+   is the *compile* date, a no-op recompile on a new day bumps it even when
+   nothing in the CV changed — and the home page should reflect real CV
+   updates, not recompiles. So gate the sync on whether the source was
+   edited this round:
+
+   ```bash
+   # "CV updated" = cv/src has uncommitted changes vs HEAD (a real edit
+   # this round, not a bare recompile). git diff --quiet exits 0 when clean.
+   if git diff --quiet HEAD -- cv/src 2>/dev/null; then
+     echo "cv/src unchanged vs HEAD — recompile only; leaving index.html date as-is."
+   else
+     # Extract the stamp the freshly built PDF actually renders.
+     STAMP=$(pdftotext cv/cv.pdf - 2>/dev/null \
+       | grep -oE 'Last Update: [A-Z][a-z]+ [0-9]{1,2}, [0-9]{4}' \
+       | head -1 | sed 's/^Last Update: //')
+     # Rewrite the home-page span to match (only if it differs).
+     if [ -n "$STAMP" ]; then
+       perl -0pi -e "s{(<span id=\"cv-updated\">)[^<]*(</span>)}{\${1}$STAMP\${2}}" index.html
+     fi
+   fi
+   ```
+
+   Report whether `index.html` was updated and to what date (or that it was
+   left untouched because the CV source was unchanged). If the `grep` yields
+   nothing (the CV template changed its stamp wording), fall back to reading
+   `cv/src/build/cv.pdf` manually and editing the span by hand — but only
+   under the same "CV actually changed" condition. Do NOT bump the home-page
+   date for a recompile that didn't touch the CV.
+
+8. **Cleanup:** leave `cv/src/build/` in place (it's gitignored). Faster subsequent compiles.
 
 ## Notes
 
