@@ -29,6 +29,10 @@ jobs:
         run: pip install requests beautifulsoup4
 
       - name: Refresh citation counts
+        env:
+          # Add a repo secret named SERPAPI_KEY for reliable, un-blockable
+          # fetches. If it's absent, the script falls back to a direct scrape.
+          SERPAPI_KEY: ${{ secrets.SERPAPI_KEY }}
         run: python3 scripts/update_citations.py
 
       - name: Commit if changed

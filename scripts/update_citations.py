@@ -1,16 +1,26 @@
 #!/usr/bin/env python3
 """Refresh Google Scholar citation counts into json/citations.json.
 
-Scrapes the public Google Scholar profile and maps each article title to the
-stable slug used as a data-cite-key on research.html.
+Two fetch paths, chosen automatically:
 
-Safe by design: if the fetch is blocked (Google returns a consent/robot page
-with no article rows), or nothing changed, the script leaves
-json/citations.json untouched and exits 0 -- so the weekly GitHub Action
-stays green and NEVER overwrites good numbers with a captcha page.
+  1. SerpApi (reliable) -- used when the SERPAPI_KEY env var is set. Hits the
+     google_scholar_author engine, which never gets rate-limited. Recommended
+     for the scheduled GitHub Action. Free tier easily covers a weekly run.
+  2. Direct profile scrape (free, no key) -- fallback when SERPAPI_KEY is
+     absent. Works from residential IPs but Google frequently 429s datacenter
+     IPs like GitHub's runners.
+
+Either way the result maps each article title to the stable slug used as a
+data-cite-key on research.html.
+
+Safe by design: if the fetch is blocked / errors / returns too few articles,
+or nothing changed, the script leaves json/citations.json untouched and exits
+0 -- so the weekly GitHub Action stays green and NEVER overwrites good numbers
+with a captcha page.
 
 Usage:
-    python3 scripts/update_citations.py
+    python3 scripts/update_citations.py            # direct scrape
+    SERPAPI_KEY=xxxx python3 scripts/update_citations.py   # via SerpApi
 """
 import json
 import os
@@ -21,10 +31,12 @@ from datetime import datetime, timezone
 import requests
 from bs4 import BeautifulSoup
 
+AUTHOR_ID = "Yx02X_IAAAAJ"
 PROFILE_URL = (
-    "https://scholar.google.com/citations"
-    "?user=Yx02X_IAAAAJ&hl=en&cstart=0&pagesize=100"
+    f"https://scholar.google.com/citations"
+    f"?user={AUTHOR_ID}&hl=en&cstart=0&pagesize=100"
 )
+SERPAPI_URL = "https://serpapi.com/search.json"
 OUT_PATH = os.path.normpath(
     os.path.join(os.path.dirname(__file__), "..", "json", "citations.json")
 )
@@ -70,7 +82,39 @@ def match_slug(title: str):
     return None
 
 
-def scrape():
+def _to_int(v) -> int:
+    if isinstance(v, int):
+        return v
+    return int(v) if str(v).isdigit() else 0
+
+
+def scrape_serpapi(key: str):
+    """Return (articles, {slug: count}) via the SerpApi Scholar Author engine."""
+    params = {
+        "engine": "google_scholar_author",
+        "author_id": AUTHOR_ID,
+        "hl": "en",
+        "num": 100,
+        "api_key": key,
+    }
+    resp = requests.get(SERPAPI_URL, params=params, timeout=45)
+    resp.raise_for_status()
+    payload = resp.json()
+    if payload.get("error"):
+        raise RuntimeError(f"SerpApi error: {payload['error']}")
+    articles = payload.get("articles") or []
+    found = {}
+    for art in articles:
+        title = art.get("title", "")
+        count = _to_int((art.get("cited_by") or {}).get("value"))
+        slug = match_slug(title)
+        if slug:
+            found[slug] = count
+    return articles, found
+
+
+def scrape_profile():
+    """Return (rows, {slug: count}) by scraping the public profile HTML."""
     resp = requests.get(PROFILE_URL, headers=HEADERS, timeout=30)
     resp.raise_for_status()
     soup = BeautifulSoup(resp.text, "html.parser")
@@ -83,11 +127,20 @@ def scrape():
             continue
         title = title_el.get_text(strip=True)
         cited = cite_el.get_text(strip=True) if cite_el else ""
-        count = int(cited) if cited.isdigit() else 0
         slug = match_slug(title)
         if slug:
-            found[slug] = count
+            found[slug] = _to_int(cited)
     return rows, found
+
+
+def fetch():
+    """Pick the fetch path: SerpApi if a key is set, else direct scrape."""
+    key = os.environ.get("SERPAPI_KEY", "").strip()
+    if key:
+        print("[update_citations] fetching via SerpApi.")
+        return scrape_serpapi(key)
+    print("[update_citations] no SERPAPI_KEY set; using direct profile scrape.")
+    return scrape_profile()
 
 
 def main() -> int:
@@ -99,20 +152,20 @@ def main() -> int:
     data.setdefault("source", "Google Scholar")
     data.setdefault(
         "profile",
-        "https://scholar.google.com/citations?user=Yx02X_IAAAAJ&hl=en",
+        f"https://scholar.google.com/citations?user={AUTHOR_ID}&hl=en",
     )
 
     try:
-        rows, found = scrape()
-    except Exception as e:  # network error, non-200, parse failure
+        items, found = fetch()
+    except Exception as e:  # network error, non-200, bad key, parse failure
         print(f"[update_citations] fetch failed: {e}. Leaving JSON unchanged.")
         return 0
 
-    # A real profile page has many rows; a consent/robot wall has none.
-    if len(rows) < 3 or not found:
+    # A real result lists many articles; a consent/robot wall or error has none.
+    if len(items) < 3 or not found:
         print(
-            f"[update_citations] profile returned too few rows ({len(rows)}) "
-            "-- likely blocked. Leaving JSON unchanged."
+            f"[update_citations] fetch returned too few articles ({len(items)}) "
+            "-- likely blocked or empty. Leaving JSON unchanged."
         )
         return 0
 
