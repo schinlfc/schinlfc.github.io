@@ -85,7 +85,11 @@ def match_slug(title: str):
 def _to_int(v) -> int:
     if isinstance(v, int):
         return v
-    return int(v) if str(v).isdigit() else 0
+    # Google Scholar sometimes appends an asterisk to a count (e.g. "1*") and
+    # may group thousands with commas. Pull the digits out rather than testing
+    # isdigit(), which would wrongly read "1*" as 0 and zero out a real count.
+    m = re.search(r"\d[\d,]*", str(v))
+    return int(m.group().replace(",", "")) if m else 0
 
 
 def scrape_serpapi(key: str):
