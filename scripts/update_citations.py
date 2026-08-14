@@ -26,6 +26,7 @@ import json
 import os
 import re
 import sys
+import time
 from datetime import datetime, timezone
 
 import requests
@@ -159,18 +160,30 @@ def main() -> int:
         f"https://scholar.google.com/citations?user={AUTHOR_ID}&hl=en",
     )
 
-    try:
-        items, found = fetch()
-    except Exception as e:  # network error, non-200, bad key, parse failure
-        print(f"[update_citations] fetch failed: {e}. Leaving JSON unchanged.")
-        return 0
-
-    # A real result lists many articles; a consent/robot wall or error has none.
-    if len(items) < 3 or not found:
-        print(
-            f"[update_citations] fetch returned too few articles ({len(items)}) "
-            "-- likely blocked or empty. Leaving JSON unchanged."
-        )
+    # Transient failures (connection resets, momentary blocks) cost a full week
+    # when the weekly run gives up on the first try, so retry with backoff.
+    # A consent/robot wall returns 200 with no article rows, so "too few
+    # articles" is retried the same way as an exception.
+    attempts = 3
+    delays = (60, 300)  # seconds before attempt 2 and 3
+    items, found = [], {}
+    for attempt in range(1, attempts + 1):
+        try:
+            items, found = fetch()
+        except Exception as e:  # network error, non-200, bad key, parse failure
+            print(f"[update_citations] fetch attempt {attempt}/{attempts} failed: {e}")
+            items, found = [], {}
+        else:
+            if len(items) >= 3 and found:
+                break
+            print(
+                f"[update_citations] attempt {attempt}/{attempts} returned too few "
+                f"articles ({len(items)}) -- likely blocked or empty."
+            )
+        if attempt < attempts:
+            time.sleep(delays[attempt - 1])
+    else:
+        print("[update_citations] all fetch attempts failed. Leaving JSON unchanged.")
         return 0
 
     old_counts = dict(data.get("counts", {}))
