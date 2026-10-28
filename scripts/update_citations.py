@@ -54,7 +54,7 @@ TITLE_MAP = {
     "beyondincome": "chin-2026-beyond-income",
     "kratombeveragesonline": "chin-2025-kratom-beverages-online",
     "fromcheatingtolearning": "chin-2026-ai-economics",
-    "longerreachoflead": "wp-longer-reach-lead",
+    "longerreachoflead": "chin-2026-longer-reach-lead",
     "airpollutionandcrime": "wp-air-pollution-crime",
     "compensationofconscience": "wp-compensation-conscience",
     "lossorgainfromseparation": "wp-loss-or-gain",
