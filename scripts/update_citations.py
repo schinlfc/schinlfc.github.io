@@ -59,7 +59,8 @@ TITLE_MAP = {
     "compensationofconscience": "wp-compensation-conscience",
     "lossorgainfromseparation": "wp-loss-or-gain",
     "maternalleadexposure": "wp-maternal-lead",
-    "leadedgasolineoninfanthealth": "wp-nascar-infant-health",
+    "leadedgasolineoninfanthealth": "wp-nascar-infant-health",  # former title
+    "airborneleadandbirthoutcomes": "wp-nascar-infant-health",
 }
 
 HEADERS = {
